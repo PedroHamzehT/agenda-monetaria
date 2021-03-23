@@ -19,11 +19,11 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <br />
 
-      <p className="control buttons">
-        <button id="btn-login" className="button is-primary">Entrar</button>
-        <button id="btn-register" className="button is-light">Cadastrar</button>
-      </p>
+      <button id="btn-login" className="button is-primary">Entrar</button>
+      <br />
+      <p> Se você não possui uma conta, <a> cadastre-se </a> </p>
     </div>
   )
 }
