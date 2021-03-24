@@ -1,9 +1,12 @@
 import React from 'react'
 import './css/login.css'
+import Logo from '../assets/logo.png'
 
 const Login = () => {
   return (
     <div className="container login">
+      <img src={Logo} alt="Agenda monetária" className="agenda-monetaria-logo"/>
+
       <div className="fields">
         <div className="field">
           <label className="label">E-mail</label>
