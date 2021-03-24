@@ -1,12 +1,9 @@
 import React from 'react'
-import './css/login.css'
-import Logo from '../assets/logo.png'
+import './css/login.scss'
 
 const Login = () => {
   return (
     <div className="container login">
-      <img src={Logo} alt="Agenda monetária" className="agenda-monetaria-logo"/>
-
       <div className="fields">
         <div className="field">
           <label className="label">E-mail</label>
@@ -21,12 +18,12 @@ const Login = () => {
             <input className="input" type="password"/>
           </div>
         </div>
-      </div>
-      <br />
+        <br />
 
-      <button id="btn-login" className="button is-primary">Entrar</button>
-      <br />
-      <p> Se você não possui uma conta, <a> cadastre-se </a> </p>
+        <button id="btn-login" className="button is-primary">Entrar</button>
+        <p> Se você não possui uma conta, <a> cadastre-se </a> </p>
+      </div>
+
     </div>
   )
 }
