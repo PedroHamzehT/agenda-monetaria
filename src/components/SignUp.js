@@ -10,10 +10,10 @@ const SignUp = ({ history }) => {
   const [ passwordConfirmation, setPasswordConfirmation ] = useState('')
   const [ emailUsing, setEmailUsing ] = useState(false)
   const [ confirmationMatch, setConfirmationMatch ] = useState(false)
+  const [ hasSystemError, setHasSystemError ] = useState(false)
 
   function assignErrorMessage(response) {
     response.data.error.forEach(error => {
-      console.log(error)
       switch (error) {
         case "Password confirmation doesn't match Password":
           setConfirmationMatch(true)
@@ -49,6 +49,11 @@ const SignUp = ({ history }) => {
     ).catch(error => {
       setEmailUsing(false)
       setConfirmationMatch(false)
+      if(error.response.status == 500) {
+        setHasSystemError(true)
+      } else {
+        setHasSystemError(false)
+      }
 
       assignErrorMessage(error.response)
 
@@ -98,6 +103,7 @@ const SignUp = ({ history }) => {
         <br />
 
         <button id="btn-login" className="button is-primary" type="submit">Cadastrar</button>
+        { errorMessage('Algo no sistema deu errado, tente novamente', hasSystemError) }
         <p> Se você possui uma conta, <a href="/sign_in"> entre aqui </a> </p>
       </div>
 
