@@ -29,7 +29,15 @@ const Login = ({ history }) => {
       '/sign_in', { headers: headers }
     ).catch((error) => {
       setError(error.response.status)
+
+      return(error.response)
     })
+
+    if (response.status != 200) {
+      return
+    } else {
+      setError('')
+    }
 
     localStorage.setItem('token', response.data.token)
     history.push('/clients')
