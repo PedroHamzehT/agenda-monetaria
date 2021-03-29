@@ -34,7 +34,7 @@ const SignUp = () => {
         <br />
 
         <button id="btn-login" className="button is-primary">Cadastrar</button>
-        <p> Se você possui uma conta, <a> entre aqui </a> </p>
+        <p> Se você possui uma conta, <a href="/sign_in"> entre aqui </a> </p>
       </div>
 
     </div>
