@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import api from './services/api'
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
+  useEffect(() => {
+    if(localStorage.getItem('token')) {
+      const headers = {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+
+      api.get(
+        '/validate_token', { headers: headers }
+      ).catch(_ => {
+        localStorage.removeItem('token')
+      })
+    }
+  }, [])
+
   return (
     <Route
       { ...rest }
       render={(props) => {
-        debugger
         if (localStorage.getItem('token')) {
           return (
-            <Component/>
+            <Component />
           )
         } else {
           return (
