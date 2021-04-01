@@ -42,7 +42,7 @@ const Navbar = () => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" navbar-item-hover-color href="/clients">
+          <a className="navbar-item" href="/clients">
             Clientes
           </a>
 
