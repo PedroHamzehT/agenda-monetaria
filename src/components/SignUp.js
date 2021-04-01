@@ -29,7 +29,7 @@ const SignUp = ({ history }) => {
   function errorMessage(message, showMessage) {
     if(showMessage) {
       return(
-        <p class="help is-danger">{ `${message}` }</p>
+        <p className="help is-danger">{ `${message}` }</p>
       )
     }
   }
