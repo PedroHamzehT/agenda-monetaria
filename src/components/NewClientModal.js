@@ -8,8 +8,15 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
   const [cellphone, setCellphone] = useState('')
   const [description, setDescription] = useState('')
 
-  function exitModal(){
+  function clearInputs() {
     setName('')
+    setEmail('')
+    setCellphone('')
+    setDescription('')
+  }
+
+  function exitModal(){
+    clearInputs()
     setNameError(false)
     closeModal()
   }
@@ -46,7 +53,7 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
       return
     }
 
-    
+    clearInputs()
     getClients()
   }
 
@@ -74,21 +81,21 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
               <div className="field">
                 <label className="label">E-mail</label>
                 <div className="control">
-                  <input onChange={event => setEmail(event.target.value)} className="input" type="email" placeholder="Digite o e-mail aqui..." />
+                  <input onChange={event => setEmail(event.target.value)} value={email} className="input" type="email" placeholder="Digite o e-mail aqui..." />
                 </div>
               </div>
 
               <div className="field">
                 <label className="label">Número de celular</label>
                 <div className="control">
-                  <input onChange={event => setCellphone(event.target.value)} className="input" type="text" placeholder="Digite o número de celular aqui..." />
+                  <input onChange={event => setCellphone(event.target.value)} value={cellphone} className="input" type="text" placeholder="Digite o número de celular aqui..." />
                 </div>
               </div>
 
               <div className="field">
                 <label className="label">Descrição</label>
                 <div className="control">
-                  <textarea onChange={event => setDescription(event.target.value)} className="textarea" type="email" placeholder="Digite alguma anotação sobre esse cliente aqui..." />
+                  <textarea onChange={event => setDescription(event.target.value)} value={description} className="textarea" type="email" placeholder="Digite alguma anotação sobre esse cliente aqui..." />
                 </div>
               </div>
 
