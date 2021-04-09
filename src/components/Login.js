@@ -9,9 +9,9 @@ const Login = ({ history }) => {
 
   function errorWarn() {
     if(error) {
-      if(error == '400'){
+      if(error === 400){
         return <p className="help is-danger"> E-mail ou senha estão incorretos </p>
-      }else if(error == '500') {
+      }else if(error === 500) {
         return <p className="help is-danger"> Algo de errado aconteceu no sistema </p>
       }
     }
@@ -33,7 +33,7 @@ const Login = ({ history }) => {
       return(error.response)
     })
 
-    if (response.status != 200) {
+    if (response.status !== 200) {
       return
     } else {
       setError('')
