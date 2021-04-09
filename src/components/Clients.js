@@ -54,13 +54,13 @@ const Clients = () => {
       </div>
 
       {
-        clients.length > 0 && clients.map((client, index) => {
+        ( clients.length > 0 && clients.map((client, index) => {
           if(index % 2 === 0) {
             return (<Client client={client} className="stripped" key={client.id} />)
           } else {
             return (<Client client={client} key={client.id}/>)
           }
-        }) ||
+        }) ) ||
         <p className="no-clients-warning">Nenhum cliente cadastrado</p>
       }
     </div>
