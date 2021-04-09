@@ -41,19 +41,22 @@ const Navbar = () => {
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <a className="navbar-item" href="/clients">
-            Clientes
-          </a>
+        {
+          localStorage.getItem('token') &&
+          <div className="navbar-start">
+            <a className="navbar-item" href="/clients">
+              Clientes
+            </a>
 
-          <a className="navbar-item" href="/products">
-            Produtos
-          </a>
+            <a className="navbar-item" href="/products">
+              Produtos
+            </a>
 
-          <a className="navbar-item" href="/sales">
-            Vendas
-          </a>
-        </div>
+            <a className="navbar-item" href="/sales">
+              Vendas
+            </a>
+          </div>
+        }
 
         <div className="navbar-end">
           <div className="navbar-item">
