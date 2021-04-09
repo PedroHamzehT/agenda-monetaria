@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import api from '../services/api'
 
-const NewClientModal = ({ showModal, closeModal }) => {
+const NewClientModal = ({ showModal, closeModal, getClients }) => {
   const [openModal, setOpenModal] = useState(showModal)
   const [nameError, setNameError] = useState(false)
   const [name, setName] = useState('')
@@ -13,7 +14,7 @@ const NewClientModal = ({ showModal, closeModal }) => {
     closeModal()
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     if (!name) {
@@ -22,6 +23,31 @@ const NewClientModal = ({ showModal, closeModal }) => {
     }
 
     setNameError(false)
+
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+    const response = await api.post(
+      '/clients',
+      {
+        client: {
+          name: name,
+          email: email,
+          cellphone: cellphone,
+          description: description
+        }
+      },
+      { headers: headers }
+    ).catch(error => {
+      return error.response
+    })
+
+    if (response.status != 201) {
+      return
+    }
+
+    
+    getClients()
   }
 
   return (

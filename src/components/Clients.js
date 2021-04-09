@@ -42,7 +42,7 @@ const Clients = () => {
         </div>
       </div>
 
-      <NewClientModal showModal={showModal} closeModal={closeModal}/>
+      <NewClientModal showModal={showModal} closeModal={closeModal} getClients={getClients}/>
 
       <hr />
 
