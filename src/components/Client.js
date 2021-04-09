@@ -4,10 +4,10 @@ const Client = ({ client, className }) => {
   return(
     <div className={className}>
       <div className="columns">
-        <div className="column">{client.name}</div>
-        <div className="column">{client.email}</div>
-        <div className="column">{client.cellphone || '-'}</div>
-        <div className="column is-two-fifths">{client.description || '-'}</div>
+        <div className="column is-2">{client.name}</div>
+        <div className="column is-2">{client.email}</div>
+        <div className="column is-2">{client.cellphone || '-'}</div>
+        <div className="column is-4">{client.description || '-'}</div>
       </div>
       <div className="actions">
         <button>Vendas</button>

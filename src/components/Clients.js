@@ -46,6 +46,13 @@ const Clients = () => {
 
       <hr />
 
+      <div className="columns">
+        <div className="column is-2"><b>Nome</b></div>
+        <div className="column is-2"><b>E-mail</b></div>
+        <div className="column is-2"><b>Número do celular</b></div>
+        <div className="column is-4"><b>Descrição</b></div>
+      </div>
+
       {
         clients.length > 0 && clients.map((client, index) => {
           if(index % 2 === 0) {
