@@ -16,7 +16,6 @@ const NewClientModal = ({ showModal, closeModal }) => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    debugger
     if (!name) {
       setNameError(true)
       return
