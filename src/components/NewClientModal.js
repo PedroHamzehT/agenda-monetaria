@@ -10,6 +10,7 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
   const [description, setDescription] = useState('')
 
   function exitModal(){
+    setName('')
     setNameError(false)
     closeModal()
   }
@@ -61,34 +62,34 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
         <section className="modal-card-body">
           <form onSubmit={handleSubmit} id="new-client-form">
             <div className="fields">
-              <div class="field">
-                <label class="label">Nome</label>
-                <div class="control">
-                  <input onChange={event => setName(event.target.value)} class="input" type="text" placeholder="Digite o nome aqui..."/>
+              <div className="field">
+                <label className="label">Nome</label>
+                <div className="control">
+                  <input onChange={event => setName(event.target.value)} value={name} className="input" type="text" placeholder="Digite o nome aqui..."/>
                 </div>
                 {
-                  nameError && <p class="help is-danger">Preencha o nome!</p>
+                  nameError && <p className="help is-danger">Preencha o nome!</p>
                 }
               </div>
 
-              <div class="field">
-                <label class="label">E-mail</label>
-                <div class="control">
-                  <input onChange={event => setEmail(event.target.value)} class="input" type="email" placeholder="Digite o e-mail aqui..." />
+              <div className="field">
+                <label className="label">E-mail</label>
+                <div className="control">
+                  <input onChange={event => setEmail(event.target.value)} className="input" type="email" placeholder="Digite o e-mail aqui..." />
                 </div>
               </div>
 
-              <div class="field">
-                <label class="label">Número de celular</label>
-                <div class="control">
-                  <input onChange={event => setCellphone(event.target.value)} class="input" type="text" placeholder="Digite o número de celular aqui..." />
+              <div className="field">
+                <label className="label">Número de celular</label>
+                <div className="control">
+                  <input onChange={event => setCellphone(event.target.value)} className="input" type="text" placeholder="Digite o número de celular aqui..." />
                 </div>
               </div>
 
-              <div class="field">
-                <label class="label">Descrição</label>
-                <div class="control">
-                  <textarea onChange={event => setDescription(event.target.value)} class="textarea" type="email" placeholder="Digite alguma anotação sobre esse cliente aqui..." />
+              <div className="field">
+                <label className="label">Descrição</label>
+                <div className="control">
+                  <textarea onChange={event => setDescription(event.target.value)} className="textarea" type="email" placeholder="Digite alguma anotação sobre esse cliente aqui..." />
                 </div>
               </div>
 
