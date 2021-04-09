@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 
 import api from '../services/api'
@@ -49,7 +48,7 @@ const SignUp = ({ history }) => {
     ).catch(error => {
       setEmailUsing(false)
       setConfirmationMatch(false)
-      if(error.response.status == 500) {
+      if(error.response.status === 500) {
         setHasSystemError(true)
       } else {
         setHasSystemError(false)
@@ -60,7 +59,7 @@ const SignUp = ({ history }) => {
       return(error.response)
     })
 
-    if (response.status != 201) {
+    if (response.status !== 201) {
       return
     }
 

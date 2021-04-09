@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import api from '../services/api'
 
 const NewClientModal = ({ showModal, closeModal, getClients }) => {
-  const [openModal, setOpenModal] = useState(showModal)
   const [nameError, setNameError] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -43,7 +42,7 @@ const NewClientModal = ({ showModal, closeModal, getClients }) => {
       return error.response
     })
 
-    if (response.status != 201) {
+    if (response.status !== 201) {
       return
     }
 
