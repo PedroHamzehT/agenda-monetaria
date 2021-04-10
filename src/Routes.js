@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Clients from './components/Clients'
+import Products from './components/Products'
 import Logout from './Logout'
 
 const Routes = () => {
@@ -19,6 +20,7 @@ const Routes = () => {
         <Route path="/sign_up" exact component={SignUp} />
         <ProtectedRoute path="/logout" exact component={Logout} />
         <ProtectedRoute path="/clients" exact component={Clients} />
+        <ProtectedRoute path="/products" exact component={Products} />
       </Switch>
     </BrowserRouter>
   )

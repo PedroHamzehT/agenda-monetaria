@@ -12,6 +12,8 @@ const Client = ({ client, className }) => {
       <div className="actions">
         <button>Vendas</button>
       </div>
+
+      <hr />
     </div>
   )
 }
