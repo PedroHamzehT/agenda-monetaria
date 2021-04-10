@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import EditProductModal from './EditProductModal'
 
-const Product = ({ product, className }) => {
+const Product = ({ product, className, getProducts }) => {
+  const [showModal, setShowModal] = useState(false)
+
+  function closeModal() {
+    getProducts()
+    setShowModal(false)
+  }
+
   return (
     <div className={className}>
       <div className="columns">
@@ -9,9 +17,10 @@ const Product = ({ product, className }) => {
         <div className="column is-half">{product.description || '-'}</div>
       </div>
       <div className="actions">
-        <button>Editar</button>
+        <button onClick={() => setShowModal(true)} className="button">Editar</button>
       </div>
 
+      <EditProductModal product={product} showModal={showModal} closeModal={closeModal}/>
       <hr />
     </div>
   )

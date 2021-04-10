@@ -21,7 +21,7 @@ const Client = ({ client, className, getClients }) => {
         <button onClick={() => setShowModal(true)} className="button">Editar</button>
       </div>
 
-      <EditClientModal client={client} showModal={showModal} closeModal={closeModal} getClients={getClients}/>
+      <EditClientModal client={client} showModal={showModal} closeModal={closeModal}/>
       <hr />
     </div>
   )

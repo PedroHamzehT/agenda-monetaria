@@ -53,9 +53,9 @@ const Products = () => {
       {
         ( products.length > 0 && products.map((product, index) => {
           if(index % 2 === 0) {
-            return (<Product product={product} className="stripped" key={product.id} />)
+            return (<Product getProducts={getProducts} product={product} className="stripped" key={product.id} />)
           } else {
-            return (<Product product={product} key={product.id}/>)
+            return (<Product getProducts={getProducts} product={product} key={product.id}/>)
           }
         }) ) ||
         <p className="no-products-warning">Nenhum produto cadastrado</p>
