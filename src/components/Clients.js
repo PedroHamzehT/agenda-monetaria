@@ -56,9 +56,9 @@ const Clients = () => {
       {
         ( clients.length > 0 && clients.map((client, index) => {
           if(index % 2 === 0) {
-            return (<Client client={client} className="stripped" key={client.id} />)
+            return (<Client client={client} className="stripped" key={client.id} getClients={getClients} />)
           } else {
-            return (<Client client={client} key={client.id}/>)
+            return (<Client client={client} key={client.id} getClients={getClients} />)
           }
         }) ) ||
         <p className="no-clients-warning">Nenhum cliente cadastrado</p>

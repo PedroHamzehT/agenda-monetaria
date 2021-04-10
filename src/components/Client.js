@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import EditClientModal from './EditClientModal'
 
-const Client = ({ client, className }) => {
+const Client = ({ client, className, getClients }) => {
+  const [showModal, setShowModal] = useState(false)
+
+  function closeModal() {
+    getClients()
+    setShowModal(false)
+  }
+
   return(
     <div className={className}>
       <div className="columns">
@@ -10,9 +18,10 @@ const Client = ({ client, className }) => {
         <div className="column is-4">{client.description || '-'}</div>
       </div>
       <div className="actions">
-        <button>Vendas</button>
+        <button onClick={() => setShowModal(true)} className="button">Editar</button>
       </div>
 
+      <EditClientModal client={client} showModal={showModal} closeModal={closeModal} getClients={getClients}/>
       <hr />
     </div>
   )
