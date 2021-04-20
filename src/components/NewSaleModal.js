@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import SaleProduct from './SaleProduct'
+import DatePicker from 'react-datepicker'
+
+import 'react-datepicker/dist/react-datepicker.css';
 import './css/new_sale_modal.scss'
 
-const NewSaleModal = ({showModal, clients, products, closeModal}) => {
+import api from '../services/api'
+import { getByDisplayValue } from '@testing-library/dom';
+
+const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
   const [clientSale, setClientSale] = useState(0)
+  const [parcelling, setParcelling] = useState(1)
+  const [saleDate, setSaleDate] = useState(new Date())
   const [saleProducts, setSaleProducts] = useState([])
 
   function changeProduct(product_id, index) {
@@ -70,6 +78,7 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
 
   function clearInputs() {
     setClientSale(0)
+    setParcelling(1)
     setSaleProducts([])
     renderSaleProducts()
   }
@@ -81,6 +90,25 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
 
   function handleSubmit(e) {
     e.preventDefault()
+
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+
+    api.post(
+      '/sales',
+      {
+        'sale': {
+          'client_id': clientSale,
+          'parcelling': parcelling,
+          'sale_date': saleDate
+        },
+        'products': saleProducts
+      },
+      { headers: headers }
+    )
+
+    getSales()
   }
 
   return (
@@ -111,6 +139,18 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
                     </select>
                   </div>) || <a href="/clients">Precisa cadastrar ao menos um cliente!</a>
                 }
+              </div>
+
+              <div className="field">
+                <div className="label">Parcelas</div>
+                <div className="control">
+                  <input onChange={(e) => setParcelling(e.target.value)} type="number" className="input parcelling-input" value={parcelling} />
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="label">Data da venda</div>
+                <DatePicker selected={saleDate} onChange={date => setSaleDate(date)} className="input" />
               </div>
 
               <div className="field">

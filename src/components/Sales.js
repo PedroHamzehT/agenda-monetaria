@@ -74,7 +74,7 @@ const Sales = () => {
         </div>
       </div>
 
-      <NewSaleModal showModal={showModal} closeModal={closeModal} clients={clients} products={products} />
+      <NewSaleModal showModal={showModal} closeModal={closeModal} clients={clients} products={products} getSales={getSales} />
 
       <hr />
 
