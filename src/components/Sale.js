@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Sale = ({ getSales, sale, className }) => {
+const Sale = ({ sale, className }) => {
   return (
     <div className={className}>
       <div className="columns">
