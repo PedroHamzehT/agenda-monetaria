@@ -7,7 +7,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './css/new_sale_modal.scss'
 
 import api from '../services/api'
-import { getByDisplayValue } from '@testing-library/dom';
 
 const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
   const [clientSale, setClientSale] = useState(0)
