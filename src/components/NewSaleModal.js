@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import SaleProduct from './SaleProduct'
+import './css/new_sale_modal.scss'
 
 const NewSaleModal = ({showModal, clients, products, closeModal}) => {
+  const [clientSale, setClientSale] = useState(0)
   const [saleProducts, setSaleProducts] = useState([])
 
   function changeProduct(product_id, index) {
-    let updatedSaleProducts = saleProducts
-    updatedSaleProducts[index].product_id = product_id
-
-    setSaleProducts(updatedSaleProducts)
+    saleProducts[index].product_id = product_id
+    setSaleProducts(saleProducts)
   }
 
   function changeProductQuantity(quantity, index) {
-    let updatedSaleProducts = saleProducts
-    updatedSaleProducts[index].quantity = quantity
+    saleProducts[index].quantity = quantity
 
-    setSaleProducts(updatedSaleProducts)
+    setSaleProducts(saleProducts)
   }
 
   function renderSaleProducts() {
@@ -41,10 +40,10 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
                   </div>
                 </div>
                 <div className="column">
-                  <input onChange={(e) => {changeProductQuantity(e.target.value, index)}} type="number"/>
+                  < input onChange={(e) => {changeProductQuantity(e.target.value, index)}} type="number" className="input" />
                 </div>
                 <div className="column">
-                  <button onClick={() => { removeSaleProduct(index) }} type="button">remover</button>
+                  <button onClick={() => { removeSaleProduct(index) }} type="button" className="button is-warning is-light" >remover</button>
                 </div>
               </div>
             )
@@ -56,23 +55,32 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
   }
 
   function removeSaleProduct(index) {
-    let updatedSaleProducts = saleProducts
-    updatedSaleProducts.splice(index, 1)
-    setSaleProducts(updatedSaleProducts)
+    saleProducts.splice(index, 1)
+    setSaleProducts(saleProducts)
 
     renderSaleProducts()
   }
 
   function addSaleProduct() {
-    let updatedSaleProducts = saleProducts
-    updatedSaleProducts.push({product_id: 0, quantity: 0})
-    setSaleProducts(updatedSaleProducts)
+    saleProducts.push({product_id: 0, quantity: 0})
+    setSaleProducts(saleProducts)
 
     renderSaleProducts()
   }
 
+  function clearInputs() {
+    setClientSale(0)
+    setSaleProducts([])
+    renderSaleProducts()
+  }
+
   function exitModal() {
+    clearInputs()
     closeModal()
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
   }
 
   return (
@@ -84,14 +92,14 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
           <button onClick={exitModal} className="delete" aria-label="close"></button>
         </header>
         <section className="modal-card-body">
-          <form className="new-sale-form">
+          <form onSubmit={handleSubmit} className="new-sale-form">
             <div className="fields">
               <div className="field">
                 <label className="label">Cliente</label>
                 {
                   (clients.length > 0 &&
                   <div className="select is-info">
-                    <select>
+                    <select onChange={e => {setClientSale(e.target.value)}}>
                       <option value="0">Escolha um cliente</option>
                       {
                         clients.map(client => {
@@ -108,9 +116,9 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
               <div className="field">
                 <div className="columns">
                   <div className="column">
-                    <label className="label">Produtos</label>
+                    <label className="label">Produto</label>
                   </div>
-                  <div className="column">
+                  <div className="column is-4">
                     <label className="label">Quantidade</label>
                   </div>
                   <div className="column"></div>
@@ -119,6 +127,8 @@ const NewSaleModal = ({showModal, clients, products, closeModal}) => {
 
                 <button onClick={addSaleProduct} className="button is-link is-inverted add-sale-product-button" type="button">Adicionar produto</button>
               </div>
+
+              <button className="button is-success register-sale" type="submit">Cadastrar</button>
             </div>
           </form>
         </section>
