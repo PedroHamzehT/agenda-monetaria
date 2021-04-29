@@ -10,6 +10,7 @@ import api from '../services/api'
 const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
   const [clientSale, setClientSale] = useState(0)
   const [parcelling, setParcelling] = useState(1)
+  const [tax, setTax] = useState(0)
   const [saleDate, setSaleDate] = useState(new Date())
   const [saleProducts, setSaleProducts] = useState([])
 
@@ -98,7 +99,8 @@ const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
       {
         'sale': {
           'client_id': clientSale,
-          'parcelling': parcelling,
+          'parcelling': parseInt(parcelling),
+          'tax': parseFloat(tax),
           'sale_date': saleDate
         },
         'products': saleProducts
@@ -142,7 +144,21 @@ const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
               <div className="field">
                 <div className="label">Parcelas</div>
                 <div className="control">
-                  <input onChange={(e) => setParcelling(e.target.value)} type="number" className="input parcelling-input" value={parcelling} />
+                  <input onChange={(e) => setParcelling(e.target.value)} type="number" className="input input-number" value={parcelling} />
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="label">Juros (Opcional)</div>
+                <div className="field has-addons">
+                  <p className="control">
+                    <input onChange={(e) => setTax(e.target.value)} value={tax} className="input" type="number" placeholder="Your email" />
+                  </p>
+                  <p className="control">
+                    <a className="button is-static">
+                      %
+                    </a>
+                  </p>
                 </div>
               </div>
 

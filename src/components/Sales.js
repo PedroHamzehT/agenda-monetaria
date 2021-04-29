@@ -82,6 +82,7 @@ const Sales = () => {
         <div className="column"><b>Cliente</b></div>
         <div className="column"><b>Total</b></div>
         <div className="column"><b>Parcelas</b></div>
+        <div className="column"><b>Juros</b></div>
         <div className="column"><b>Está pago?</b></div>
         <div className="column"><b>Data da venda</b></div>
       </div>
