@@ -109,6 +109,7 @@ const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
     )
 
     getSales()
+    exitModal()
   }
 
   return (
