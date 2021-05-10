@@ -5,7 +5,7 @@ const Sale = ({ sale, className }) => {
     <div className={className}>
       <div className="columns">
         <div className="column">{sale.client_id}</div>
-        <div className="column">{sale.total}</div>
+        <div className="column">R$ {sale.total}</div>
         <div className="column">{sale.parcelling}</div>
         <div className="column">{sale.tax + '%' || '0%'}</div>
         <div className="column">{sale.paid ? 'Sim' : 'Não'}</div>
