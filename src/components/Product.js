@@ -15,9 +15,9 @@ const Product = ({ product, className, getProducts }) => {
         <div className="column">{product.name}</div>
         <div className="column">{product.value}</div>
         <div className="column is-half">{product.description || '-'}</div>
-      </div>
-      <div className="actions">
-        <button onClick={() => setShowModal(true)} className="button">Editar</button>
+        <div className="actions">
+          <button onClick={() => setShowModal(true)} className="button">Editar</button>
+        </div>
       </div>
 
       <EditProductModal product={product} showModal={showModal} closeModal={closeModal}/>

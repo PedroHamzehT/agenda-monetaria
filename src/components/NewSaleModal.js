@@ -14,77 +14,35 @@ const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
   const [saleDate, setSaleDate] = useState(new Date())
   const [saleProducts, setSaleProducts] = useState([])
 
-  function changeProduct(product_id, index) {
-    saleProducts[index].product_id = product_id
-    setSaleProducts(saleProducts)
-  }
-
-  function changeProductQuantity(quantity, index) {
-    saleProducts[index].quantity = quantity
-
-    setSaleProducts(saleProducts)
-  }
-
-  function renderSaleProducts() {
-    ReactDOM.render(
-      <div>
-        {
-          saleProducts.map((_saleProduct, index) => {
-            return (
-              <div className="columns" key={index}>
-                <div className="column">
-                  <div className="select is-info">
-                    <select onChange={e => {changeProduct(e.target.value, index)}}>
-                      <option value="0">Selecione um produto</option>
-                      {
-                        products.map(product => {
-                          return (
-                            <option value={product.id} key={product.id}>{product.name}</option>
-                          )
-                        })
-                      }
-                    </select>
-                  </div>
-                </div>
-                <div className="column">
-                  < input onChange={(e) => {changeProductQuantity(e.target.value, index)}} type="number" className="input" />
-                </div>
-                <div className="column">
-                  <button onClick={() => { removeSaleProduct(index) }} type="button" className="button is-warning is-light" >remover</button>
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>,
-      document.getElementById('sale-products')
-    )
-  }
-
-  function removeSaleProduct(index) {
-    saleProducts.splice(index, 1)
-    setSaleProducts(saleProducts)
-
-    renderSaleProducts()
-  }
-
-  function addSaleProduct() {
-    saleProducts.push({product_id: 0, quantity: 0})
-    setSaleProducts(saleProducts)
-
-    renderSaleProducts()
-  }
-
   function clearInputs() {
-    setClientSale(0)
     setParcelling(1)
     setSaleProducts([])
-    renderSaleProducts()
   }
 
   function exitModal() {
     clearInputs()
     closeModal()
+  }
+
+  function removeSaleProduct(index) {
+    saleProducts.splice(index, 1)
+    setSaleProducts([...saleProducts])
+  }
+
+  function addSaleProduct() {
+    saleProducts.push({product_id: 0, quantity: 0})
+    setSaleProducts([...saleProducts])
+  }
+
+  function changeProduct(product_id, index) {
+    saleProducts[index].product_id = product_id
+    setSaleProducts([...saleProducts])
+  }
+
+  function changeProductQuantity(quantity, index) {
+    saleProducts[index].quantity = quantity
+
+    setSaleProducts([...saleProducts])
   }
 
   function handleSubmit(e) {
@@ -178,7 +136,38 @@ const NewSaleModal = ({showModal, clients, products, closeModal, getSales}) => {
                   </div>
                   <div className="column"></div>
                 </div>
-                <div id="sale-products"></div>
+                <div id="sale-products">
+                  <div>
+                    {
+                      saleProducts.map((_saleProduct, index) => {
+                        return (
+                          <div className="columns" key={index}>
+                            <div className="column">
+                              <div className="select is-info">
+                                <select onChange={e => {changeProduct(e.target.value, index)}}>
+                                  <option value="0">Selecione um produto</option>
+                                  {
+                                    products.map(product => {
+                                      return (
+                                        <option value={product.id} key={product.id}>{product.name}</option>
+                                      )
+                                    })
+                                  }
+                                </select>
+                              </div>
+                            </div>
+                            <div className="column">
+                              < input onChange={(e) => {changeProductQuantity(e.target.value, index)}} type="number" className="input" />
+                            </div>
+                            <div className="column">
+                              <button onClick={() => { removeSaleProduct(index) }} type="button" className="button is-warning is-light" >remover</button>
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
 
                 <button onClick={addSaleProduct} className="button is-link is-inverted add-sale-product-button" type="button">Adicionar produto</button>
               </div>

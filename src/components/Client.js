@@ -16,9 +16,9 @@ const Client = ({ client, className, getClients }) => {
         <div className="column is-2">{client.email}</div>
         <div className="column is-2">{client.cellphone || '-'}</div>
         <div className="column is-4">{client.description || '-'}</div>
-      </div>
-      <div className="actions">
-        <button onClick={() => setShowModal(true)} className="button">Editar</button>
+        <div className="actions">
+          <button onClick={() => setShowModal(true)} className="button">Editar</button>
+        </div>
       </div>
 
       <EditClientModal client={client} showModal={showModal} closeModal={closeModal}/>
