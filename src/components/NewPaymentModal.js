@@ -5,6 +5,7 @@ import api from '../services/api'
 
 const NewPaymentModal = ({ sale, showModal, closeModal }) => {
   const [payments, setPayments] = useState([])
+  const [totalPaid, setTotalPaid] = useState(0)
 
   async function getPayments() {
     const headers = {
@@ -66,16 +67,27 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
   const changePayValue = (value, index) => {
     payments[index].pay_value = value
     setPayments([...payments])
+    calculateTotalPaid()
   }
 
   const changeDate = (value, index) => {
     payments[index].date = value
     setPayments([...payments])
+    calculateTotalPaid()
   }
 
   const removePayment = (index) => {
     payments.splice(index, 1)
     setPayments([...payments])
+    calculateTotalPaid()
+  }
+
+  const calculateTotalPaid = () => {
+    setTotalPaid(
+      payments.reduce((acc, current) => (
+        acc + parseInt(current.pay_value, 10)
+      ), 0)
+    )
   }
 
   const savePayments = () => {
@@ -84,6 +96,7 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
 
   const exitModal = () => {
     getPayments()
+    setTotalPaid(0)
     closeModal()
   }
 
@@ -109,6 +122,7 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
         </section>
         <footer className="modal-card-foot" >
           <button onClick={savePayments} id="save-payments">Salvar pagamentos</button>
+          <p>Total pago: {totalPaid}</p>
         </footer>
       </div>
     </div>
