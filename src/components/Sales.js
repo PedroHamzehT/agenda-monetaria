@@ -85,6 +85,7 @@ const Sales = () => {
         <div className="column"><b>Juros</b></div>
         <div className="column"><b>Está pago?</b></div>
         <div className="column"><b>Data da venda</b></div>
+        <div className="column actions"></div>
       </div>
 
       {
