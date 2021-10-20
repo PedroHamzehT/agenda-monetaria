@@ -18,9 +18,10 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
       return error.response
     })
 
+    debugger
     setPayments(
       response.data.map(payment => (
-        { pay_value: payment.pay_value, date: payment.date, }
+        { id: payment.id, pay_value: payment.pay_value, date: payment.date, }
       ))
     )
   }
@@ -90,8 +91,24 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
     )
   }
 
-  const savePayments = () => {
-    console.log('savePayments')
+  async function savePayments() {
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+    const { data } = await api.post(
+      `/payments`,
+      {
+        payment_history: {
+          sale_id: sale.id,
+          payments: payments,
+        },
+      },
+      { headers: headers },
+    ).catch((_error) => (
+      { data: { message: 'Não foi possível criar os pagamentos!' } }
+    ))
+
+    alert(data.message)
   }
 
   const exitModal = () => {
