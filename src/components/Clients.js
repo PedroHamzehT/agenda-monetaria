@@ -20,9 +20,11 @@ const Clients = () => {
 
     const response = await api.get(
       '/clients', { headers: headers }
-    ).catch(e => {
-      return(e.response)
-    })
+    ).then(({ data }) => {
+      return { data }
+    }).catch(({ response }) => (
+      { data: [], error: response.data }
+    ))
 
     setClients(response.data)
   }
