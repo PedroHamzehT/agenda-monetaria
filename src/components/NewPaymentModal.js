@@ -122,7 +122,7 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
 
   useEffect(() => {
     calculateTotalPaid()
-  }, payments)
+  }, [payments])
 
   return (
     <div className={`modal ${showModal && 'is-active'}`}>
