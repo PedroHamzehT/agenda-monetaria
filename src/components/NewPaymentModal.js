@@ -1,6 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { useState, useEffect } from 'react'
-import DatePicker from 'react-datepicker'
+import InputMask from 'react-input-mask'
 import api from '../services/api'
 
 const NewPaymentModal = ({ sale, showModal, closeModal }) => {
@@ -18,11 +18,10 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
       return error.response
     })
 
-    debugger
     setPayments(
       response.data.map(payment => (
         { id: payment.id, pay_value: payment.pay_value, date: payment.date, }
-      ))
+      )), calculateTotalPaid()
     )
   }
 
@@ -48,7 +47,7 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
             </div>
   
             <div className="column">
-              <DatePicker onChange={(date) => { changeDate(date, index) }} selected={payment.date || new Date()} className="input" />
+              <InputMask onChange={(e) => { changeDate(e.target.value, index) }} value={ payment.date } mask="99/99/9999" />
             </div>
 
             <div className="column action">
@@ -120,6 +119,10 @@ const NewPaymentModal = ({ sale, showModal, closeModal }) => {
   useEffect(() => {
     getPayments()
   }, [])
+
+  useEffect(() => {
+    calculateTotalPaid()
+  }, payments)
 
   return (
     <div className={`modal ${showModal && 'is-active'}`}>
